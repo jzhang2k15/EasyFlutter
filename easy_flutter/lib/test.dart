@@ -1,4 +1,5 @@
 import 'package:easy_flutter/scaffoldtest.dart';
+import 'package:easy_flutter/tabcontroller.dart' as mycontroller;
 import 'package:flutter/material.dart';
 
 void main() => runApp(TestApp());
@@ -13,7 +14,7 @@ class TestApp extends StatelessWidget {
       // 如果名称存在，则关联的 WidgetBuilder 构建 MaterialPageRoute
       routes: <String, WidgetBuilder>{
         '/myfirst': (BuildContext context) => MyFirstPage(),
-        '/mysecond': (BuildContext context) => MySecondPage(),
+        '/mysecond': (BuildContext context) => mycontroller.MyCustomTabController(),
         '/mythird': (BuildContext context) => ScaffoldApp()
       },
       initialRoute: '/myfirst',
@@ -33,6 +34,7 @@ class MyFirstPage extends StatelessWidget {
             icon: Icon(Icons.share),
             onPressed: (){
               print('点击了分享按钮');
+              Navigator.pushNamed(context, '/mythird');
             },
           )
         ],
