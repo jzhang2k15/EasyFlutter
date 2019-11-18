@@ -31,29 +31,8 @@ class _ScaffoldAppState extends State<ScaffoldApp> {
         body: Center(
           child: _list.elementAt(_currentIndex),
         ),
-        bottomNavigationBar: BottomNavigationBar(items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('首页')
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.contacts),
-              title: Text('通讯录')
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('设置')
-          ),
-        ],
-          currentIndex: _currentIndex,
-          selectedItemColor: Colors.blue,
-          onTap: _onBottomBarTap,// 在底部选项卡被点击的时候调用，
-        ),
-        drawer: Drawer(
-          child: Center(
-            child: Text('抽屉'),
-          ),
-        ),
+        bottomNavigationBar: _bottomNaviBar,
+        drawer: _drawer,
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add_to_queue),
           onPressed: () {
@@ -73,4 +52,46 @@ class _ScaffoldAppState extends State<ScaffoldApp> {
       _currentIndex = index;
     });
   }
+
+  get _drawer => Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        UserAccountsDrawerHeader(
+          accountName: Text('JohnZhang'),
+          accountEmail: Text('testemail.gmail.com'),
+          currentAccountPicture: CircleAvatar(
+            child: Text('J'),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.local_post_office),
+          title: Text('邮件'),
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('设置'),),
+      ],
+    ),
+  );
+
+  get _bottomNaviBar => BottomNavigationBar(
+    items: const <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('首页')
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.contacts),
+          title: Text('通讯录')
+      ),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          title: Text('设置')
+      ),
+    ],
+    currentIndex: _currentIndex,
+    selectedItemColor: Colors.blue,
+    onTap: _onBottomBarTap,
+  );
 }
