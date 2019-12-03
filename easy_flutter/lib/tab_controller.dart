@@ -30,7 +30,7 @@ class MyDefaultTabController extends StatelessWidget {
 
 class MyCustomTabController extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
+  _MyCustomTabControllerState createState() {
     return _MyCustomTabControllerState();
   }
 }
